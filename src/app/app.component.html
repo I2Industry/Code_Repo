@@ -1,0 +1,52 @@
+<div>
+<div class="container" style="width: 35%;">
+	<h2>Unified Testing FrameWork</h2>
+	<form [formGroup]="myForm">
+		<div class="form-group">
+			<label class="center-block" class = "lbl">ENV:
+        <select class="form-control" formControlName="env"  required>
+          <option *ngFor="let envT of envs" [value]="envT">{{envT}}</option>
+        </select>
+      </label>
+		</div>
+    <div class="form-group">
+			<label class="center-block" class = "lbl">what to run from repo?:
+        <input  type ="checkbox" class="form-control" formControlName="isRepo" name="isRepo" [(ngModel)]="isRepo" (click) = onclickRepoCheck()>
+      </label>
+		</div>
+		<div class="form-group" class = "lbl" *ngIf="(isRepo)">
+			<label class="center-block">Repo:
+        <input class="form-control" formControlName="repo">
+      </label>
+		</div>
+    <div class="form-group" class = "lbl" *ngIf="(isRepo)">
+			<label class="center-block">Branch:
+        <input class="form-control" formControlName="branch">
+      </label>
+		</div>
+    <div class="form-group" class = "lbl">
+			<label class="center-block">Egg File Path:
+        <input class="form-control" formControlName="eggFilePath" required>
+      </label>
+		</div>
+    <div class="form-group" class = "lbl">
+			<label class="center-block">Upload DBFS path:
+        <input class="form-control" formControlName="dbfsPath" required>
+      </label>
+		</div>
+    <div class="form-group" class = "lbl">
+			<label class="center-block">Pass Input JSON:
+        <textarea class="form-control" formControlName="inputJson" required></textarea>
+      </label>
+		</div>
+    <div class="form-group" class = "lbl">
+			<label class="center-block">Pass Input Jobs Flow JSON:
+        <textarea class="form-control" formControlName="flowJson"></textarea>
+      </label>
+		</div>
+    <button type="submit" class="btn btn-success" [disabled]="!myForm.valid" (click)="onSubmit(myForm)">Submit</button>
+	</form>
+
+	<pre>{{ response | json }}</pre>
+</div>
+</div>
