@@ -23,15 +23,43 @@ export class AppComponent {
      this.isRepo = !this.isRepo
    }
 
+  //hiding egg_build
+  isBuild:boolean = false
+
+  //onclick toggling both
+   onclickBuildCheck()
+   {
+     this.isBuild = !this.isBuild
+   }
+
+   //hiding egg_build
+  isTaskFlow:boolean = false
+
+  //onclick toggling both
+   onclickTaskFlowCheck()
+   {
+     this.isTaskFlow = !this.isTaskFlow
+   }
+
+    //hiding egg_build
+  isTaskDQ:boolean = false
+
+  //onclick toggling both
+   onclickTaskDQCheck()
+   {
+     this.isTaskDQ = !this.isTaskDQ
+   }
   data = {
     id: 1,
     env: '',
     repo: '',
     branch: '',
+    localPath:'',
     eggFilePath: '',
     dbfsPath: '',
     inputJson: '',
-    flowJson: ''
+    flowJson: '',
+    inputDqJson:''
 
   };
 
@@ -47,10 +75,12 @@ export class AppComponent {
       env: '',
       repo: '',
       branch: '',
+      localPath:'',
       eggFilePath: '',
       dbfsPath: '',
       inputJson: '',
-      flowJson: ''
+      flowJson: '',
+      inputDqJson:''
     });
   }
 
@@ -64,10 +94,12 @@ export class AppComponent {
       env: this.data.env,
       repo: this.data.repo,
       branch: this.data.branch,
+      localPath: this.data.localPath,
       eggFilePath: this.data.eggFilePath,
       dbfsPath: this.data.dbfsPath,
       inputJson: this.data.inputJson,
-      flowJson: this.data.flowJson
+      flowJson: this.data.flowJson,
+      inputDqJson:this.data.inputDqJson
     });
   }
 
