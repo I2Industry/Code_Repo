@@ -1,77 +1,101 @@
 <div>
-  <div class="container" style="width: 35%;">
-    <h2>Unified Testing FrameWork</h2>
-    <form [formGroup]="myForm">
+  <h1>Unified Testing FrameWork</h1>
+</div>
+<div>
+  <div class="container" style="width: 80%;">
+    <div>
+      <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink (click)="isForum=true">Create</a>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink (click)=onClickResult()>Results</a>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
+    </div>
+    <form [formGroup]="myForm" *ngIf="isForum">
       <div class="form-group">
-        <label class="center-block" class = "lbl">ENV:
-          <select class="form-control" formControlName="env"  required>
+        <label class="center-block" class="lbl">ENV:
+          <select class="form-control" formControlName="env" required>
             <option *ngFor="let envT of envs" [value]="envT">{{envT}}</option>
           </select>
         </label>
       </div>
       <div class="form-group">
-        <label class="center-block" class = "lbl">Clone Repo to Local:
-          <input  type ="checkbox" class="form-control" formControlName="isRepo" name="isRepo" [(ngModel)]="isRepo" (click) = onclickRepoCheck()>
+        <label class="left-block" class="lbl">Clone Repo to Local:
+          <input type="checkbox" class="form-control" formControlName="isRepo" name="isRepo" [(ngModel)]="isRepo"
+            (click)=onclickRepoCheck()>
         </label>
       </div>
-      <div class="form-group" class = "lbl" *ngIf="(isRepo)">
+      <div class="form-group" class="lbl" *ngIf="(isRepo)">
         <label class="center-block">Repo:
           <input class="form-control" formControlName="repo">
         </label>
       </div>
-      <div class="form-group" class = "lbl" *ngIf="(isRepo)">
+      <div class="form-group" class="lbl" *ngIf="(isRepo)">
         <label class="center-block">Branch:
           <input class="form-control" formControlName="branch">
         </label>
       </div>
-      <div class="form-group" class = "lbl" *ngIf="(isRepo)">
+      <div class="form-group" class="lbl" *ngIf="(isRepo)">
         <label class="center-block">Local Path:
           <input class="form-control" formControlName="localPath">
         </label>
       </div>
       <div class="form-group">
-        <label class="center-block" class = "lbl">Egg Build and DBFS Deploy:
-          <input  type ="checkbox" class="form-control" formControlName="isBuild" name="isBuild" [(ngModel)]="isBuild" (click) = onclickBuildCheck()>
+        <label class="center-block" class="lbl">Egg Build and DBFS Deploy:
+          <input type="checkbox" class="form-control" formControlName="isBuild" name="isBuild" [(ngModel)]="isBuild"
+            (click)=onclickBuildCheck()>
         </label>
       </div>
-      <div class="form-group" class = "lbl"*ngIf="(isBuild)">
+      <div class="form-group" class="lbl" *ngIf="(isBuild)">
         <label class="center-block">Egg File Path:
           <input class="form-control" formControlName="eggFilePath">
         </label>
       </div>
-      <div class="form-group" class = "lbl"*ngIf="(isBuild)">
+      <div class="form-group" class="lbl" *ngIf="(isBuild)">
         <label class="center-block">Upload DBFS path:
-          <input class="form-control" formControlName="dbfsPath" >
+          <input class="form-control" formControlName="dbfsPath">
         </label>
       </div>
       <div class="form-group">
-        <label class="center-block" class = "lbl">Task Flow Execution in Databricks:
-          <input  type ="checkbox" class="form-control" formControlName="isTaskFlow" name="isTaskFlow" [(ngModel)]="isTaskFlow" (click) = onclickTaskFlowCheck()>
+        <label class="center-block" class="lbl">Task Flow Execution in Databricks:
+          <input type="checkbox" class="form-control" formControlName="isTaskFlow" name="isTaskFlow"
+            [(ngModel)]="isTaskFlow" (click)=onclickTaskFlowCheck()>
         </label>
       </div>
-      <div class="form-group" class = "lbl"*ngIf="(isTaskFlow)">
+      <div class="form-group" class="lbl" *ngIf="(isTaskFlow)">
         <label class="center-block">Pass Input JSON:
           <textarea class="form-control" formControlName="inputJson" required></textarea>
         </label>
       </div>
-      <div class="form-group" class = "lbl"*ngIf="(isTaskFlow)">
+      <div class="form-group" class="lbl" *ngIf="(isTaskFlow)">
         <label class="center-block">Pass Input Jobs Flow JSON:
           <textarea class="form-control" formControlName="flowJson"></textarea>
         </label>
       </div>
       <div class="form-group">
-        <label class="center-block" class = "lbl">Data Quality Checks Perform:
-          <input  type ="checkbox" class="form-control" formControlName="isTaskDQ" name="isTaskDQ" [(ngModel)]="isTaskDQ" (click) = onclickTaskDQCheck()>
+        <label class="center-block" class="lbl">Data Quality Checks Perform:
+          <input type="checkbox" class="form-control" formControlName="isTaskDQ" name="isTaskDQ" [(ngModel)]="isTaskDQ"
+            (click)=onclickTaskDQCheck()>
         </label>
       </div>
-      <div class="form-group" class = "lbl"*ngIf="(isTaskDQ)">
+      <div class="form-group" class="lbl" *ngIf="(isTaskDQ)">
         <label class="center-block">Pass Input JSON:
-          <textarea class="form-control" formControlName="inputDqJson" ></textarea>
+          <textarea class="form-control" formControlName="inputDqJson"></textarea>
         </label>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!myForm.valid" (click)="onSubmit(myForm)">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="!myForm.valid"
+        (click)="onSubmit(myForm)">Submit</button>
     </form>
 
-    <pre>{{ response | json }}</pre>
+    <pre *ngIf="isForum">{{ response | json }}</pre>
+
+
   </div>
+</div>
+<div>
+  <ag-grid-angular *ngIf="!isForum" id="result-grid" class="ag-theme-alpine-dark float-right" [rowData]="responseObjArr"
+    [columnDefs]="columnDefs" [enableCellTextSelection] = true></ag-grid-angular>
 </div>

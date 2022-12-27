@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import '~ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 
-h2{
+h1{
     color:lightgrey;
     font-weight: bolder;
 }
@@ -17,4 +20,8 @@ h2{
     background: url('./assets/niq_bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+  }
+  
+input[type='checkbox'] {
+    width: 25px;
   }
