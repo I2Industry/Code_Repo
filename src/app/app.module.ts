@@ -6,7 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { AgGridModule } from 'ag-grid-angular-legacy';
-import { NgbNavModule  } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 
 @NgModule({
@@ -20,7 +24,10 @@ import { NgbNavModule  } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     AgGridModule,
-    NgbNavModule
+    NgbNavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
